@@ -8,6 +8,11 @@ export class HelloWorldScene extends Phaser.Scene {
   private platforms!: Phaser.Physics.Arcade.StaticGroup;
   private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   private stars!: Phaser.Physics.Arcade.Group;
+  private bombs!: Phaser.Physics.Arcade.Group;
+  private score: number = 0;
+  private scoreText;
+  private gameOver: boolean = false;
+
   constructor() {
     super('hello-world');
   }
@@ -63,6 +68,50 @@ export class HelloWorldScene extends Phaser.Scene {
       //@ts-ignore
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
+
+    this.physics.add.collider(this.stars, this.platforms);
+
+    this.physics.add.overlap(this.player, this.stars, this.collectStar, undefined, this);
+
+    // @ts-ignore
+    this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+
+    this.bombs = this.physics.add.group();
+
+    this.physics.add.collider(this.bombs, this.platforms);
+
+    this.physics.add.collider(this.player, this.bombs, this.hitBomb, undefined, this);
+  }
+
+  collectStar(player, star) {
+    star.disableBody(true, true);
+
+    this.score += 10;
+    this.scoreText.setText('Score: ' + this.score);
+
+    if (this.stars.countActive(true) === 0) {
+      this.stars.children.iterate(function (child) {
+        //@ts-ignore
+        child.enableBody(true, child.x, 0, true, true);
+      });
+
+      const x = player.x < 400 ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+      const bomb = this.bombs.create(x, 16, 'bomb');
+      bomb.setBounce(1);
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    }
+  }
+
+  hitBomb(player, bomb) {
+    this.physics.pause();
+
+    player.setTint(0xff0000);
+
+    player.anims.play('turn');
+
+    this.gameOver = true;
   }
 
   update() {

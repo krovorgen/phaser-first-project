@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@parcel/transformer-sass': ^2.6.0
@@ -47,7 +47,7 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@csstools/selector-specificity/2.0.1_e73911252e8c76a7ba13ab9c39479e7d:
+  /@csstools/selector-specificity/2.0.1_444rcjjorr3kpoqtvoodsr46pu:
     resolution: {integrity: sha512-aG20vknL4/YjQF9BSV7ts4EWm/yrjagAN7OWBNmlbEOUiu0llj4OGrFoOKK3g2vey4/p2omKCoHrWtPxSwV3HA==}
     engines: {node: ^12 || ^14 || >=16}
     peerDependencies:
@@ -281,7 +281,7 @@ packages:
       '@parcel/plugin': 2.6.2
     dev: true
 
-  /@parcel/config-default/2.6.2_9f6b37d79f622434192e98e35fb9a325:
+  /@parcel/config-default/2.6.2_t5vtpv47misdigjotdrv7ondeu:
     resolution: {integrity: sha512-kuZFY0rhaioCRX2LqxaMM2ylui6ms/nmdVxuceP4/SAWi/9duc+y1lG2a1zGNShbc6OEgpdQr/W/jxdYM7NJDw==}
     peerDependencies:
       '@parcel/core': ^2.6.2
@@ -2004,7 +2004,7 @@ packages:
       '@parcel/core':
         optional: true
     dependencies:
-      '@parcel/config-default': 2.6.2_9f6b37d79f622434192e98e35fb9a325
+      '@parcel/config-default': 2.6.2_t5vtpv47misdigjotdrv7ondeu
       '@parcel/core': 2.6.2
       '@parcel/diagnostic': 2.6.2
       '@parcel/events': 2.6.2
@@ -2419,7 +2419,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@csstools/selector-specificity': 2.0.1_e73911252e8c76a7ba13ab9c39479e7d
+      '@csstools/selector-specificity': 2.0.1_444rcjjorr3kpoqtvoodsr46pu
       balanced-match: 2.0.0
       colord: 2.9.2
       cosmiconfig: 7.0.1
