@@ -5,8 +5,9 @@ import bomb from '../assets/bomb.png';
 import dude from '../assets/dude.png';
 
 export class HelloWorldScene extends Phaser.Scene {
-  private platforms;
-  private player;
+  private platforms!: Phaser.Physics.Arcade.StaticGroup;
+  private player!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+  private stars!: Phaser.Physics.Arcade.Group;
   constructor() {
     super('hello-world');
   }
@@ -51,6 +52,17 @@ export class HelloWorldScene extends Phaser.Scene {
     });
 
     this.physics.add.collider(this.player, this.platforms); // чтобы объекты сталиквались
+
+    this.stars = this.physics.add.group({
+      key: 'star',
+      repeat: 11,
+      setXY: { x: 12, y: 0, stepX: 70 },
+    });
+
+    this.stars.children.iterate(function (child) {
+      //@ts-ignore
+      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    });
   }
 
   update() {
