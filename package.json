@@ -12,6 +12,7 @@
     "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/*.ts\""
   },
   "dependencies": {
+    "phaser": "^3.55.2"
   },
   "browserslist": [
     "last 2 version",
